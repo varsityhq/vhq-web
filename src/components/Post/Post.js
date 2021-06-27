@@ -1,31 +1,26 @@
-import React,{Component} from "react";
-import {withStyles } from "@material-ui/core/styles";
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import { GiThreeFriends } from "react-icons/gi";
 import { GoCommentDiscussion } from "react-icons/go";
-import {  
+import {
   IoChatboxEllipsesOutline,
   IoEllipsisHorizontalOutline,
-
   IoSend,
 } from "react-icons/io5";
 import { BsBookmarkPlus, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { handleMenuNav } from "../../store/actions/actions";
-import {
-  Editor,
-  convertFromRaw,
-  EditorState,
-} from "draft-js";
-import { Avatar, Grid, IconButton, Typography } from "@material-ui/core";
+import { Editor, convertFromRaw, EditorState } from "draft-js";
+import { Avatar, Box, Grid, IconButton, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
-const useStyles = theme => ({
+const useStyles = (theme) => ({
   root: {
     width: "100%",
   },
@@ -59,7 +54,7 @@ const useStyles = theme => ({
 
 class Post extends Component {
   state = {
-    expanded : false,
+    expanded: false,
     showSend: false,
     postTextContent: EditorState.createEmpty(),
   };
@@ -68,14 +63,14 @@ class Post extends Component {
     let rawContent = JSON.parse(this.props.x.caption);
     this.setState({
       postTextContent: EditorState.createWithContent(
-        convertFromRaw(rawContent.content),
+        convertFromRaw(rawContent.content)
       ),
     });
   };
 
-  setExpanded = (n)=>{
-    this.setState({expanded : n})
-    }
+  setExpanded = (n) => {
+    this.setState({ expanded: n });
+  };
 
   handleFocus = () => this.setState({ showSend: true });
   // componentDidUpdate() {
@@ -131,70 +126,76 @@ class Post extends Component {
           {dayjs(this.props.x.created_at).fromNow()}
         </div>
         <div className={classes.root}>
-        <Accordion expanded={this.state.expanded} className={classes.Accordion}>
-          <AccordionSummary className={classes.AccordionSummary}>
-            <Grid container justify="center" alignItems="center">
-              <Grid item xs={10} container justify="flex-start" alignItems="center">
-                <IconButton
-                  onClick={() => alert("hello")}
-                  className={classes.IconButton}
+          <Accordion expanded={this.state.expanded} className={classes.Accordion}>
+            <AccordionSummary className={classes.AccordionSummary}>
+              <Grid container justify="center" alignItems="center">
+                <Grid
+                  item
+                  xs={10}
+                  container
+                  justify="flex-start"
+                  alignItems="center"
                 >
-                  <BsHeart className="mr-1" />
-                  <Typography variant="body2">
+                  <IconButton
+                    onClick={() => alert("hello")}
+                    className={classes.IconButton}
+                  >
+                    <BsHeart className="mr-1" />
+                    <Typography variant="body2">
                       {this.props.x.likes_count}
+                    </Typography>
+                  </IconButton>
+                  <IconButton className={classes.IconButton}>
+                    <GoCommentDiscussion className="mr-1" />
+                    <Typography variant="body2">
+                      {this.props.x.comments_count}
+                    </Typography>
+                  </IconButton>
+                  <IconButton
+                    onClick={() => this.setExpanded(!this.state.expanded)}
+                    className={classes.IconButton}
+                  >
+                    <IoChatboxEllipsesOutline className="mr-1" />
+                  </IconButton>
+                </Grid>
+                <Grid item container xs={2} justify="flex-end" alignItems="center">
+                  <IconButton className={classes.IconButton}>
+                    <BsBookmarkPlus />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </AccordionSummary>
+            <AccordionDetails className={classes.AccordionDetails}>
+              <Box display="flex" alignItems="center">
+                <Box minWidth={35} justify="flex-end" alignItems="center">
+                  <Avatar
+                    className={classes.Avatar}
+                    alt={this.props.core.accData.firstname}
+                    src={this.props.core.accData.profilepic}
+                  />
+                </Box>
+                <Box width="100%" justify="flex-start" alignItems="center">
+                  <Typography component="form">
+                    <Box display="dlex" justify="flex-start" alignItems="center">
+                      <Box width="100%">
+                        <input
+                          className="v-ycrac "
+                          placeholder="Write your response"
+                        />{" "}
+                      </Box>
+                      <Box minWidth={35}>
+                        <IconButton type="submit">
+                          <IoSend />
+                        </IconButton>
+                      </Box>
+                    </Box>
                   </Typography>
-                </IconButton>
-                <IconButton className={classes.IconButton}>
-                  <GoCommentDiscussion className="mr-1" />
-                  <Typography variant="body2">
-                  {this.props.x.comments_count}
-                  </Typography>
-                </IconButton>
-                <IconButton
-                  onClick={() => this.setExpanded(!this.state.expanded)}
-                  className={classes.IconButton}
-                >
-                  <IoChatboxEllipsesOutline className="mr-1" />
-                </IconButton>
-              </Grid>
-              <Grid item container xs={2} justify="flex-end" alignItems="center">
-                <IconButton className={classes.IconButton}>
-                  <BsBookmarkPlus />
-                </IconButton>
-              </Grid>
-            </Grid>
-          </AccordionSummary>
-          <AccordionDetails className={classes.AccordionDetails}>
-            <Grid container alignItems="center">
-              <Grid container item xs={1} justify="flex-end" alignItems="center">
-                <Avatar
-                  className={classes.Avatar}
-                  alt={this.props.core.accData.firstname}
-                  src={this.props.core.accData.profilepic}
-                />
-              </Grid>
-              <Grid item xs={11} justify="flex-start" alignItems="center">
-                <Typography component="form">
-                  <Grid container justify="flex-start" alignItems="center">
-                    <Grid item xs={11}>
-                      <input
-                        className="v-ycrac "
-                        placeholder="Write your response"
-                      />{" "}
-                    </Grid>
-                    <Grid container item xs={1} justify="center" alignItems="center">
-                      <IconButton type="submit">
-                        <IoSend />
-                      </IconButton>
-                    </Grid>
-                  </Grid>
-                </Typography>
-              </Grid>
-            </Grid>
-            <div className="v-post-footer pb-2 px-1 "></div>
-          </AccordionDetails>
-        </Accordion>    
-      </div>
+                </Box>
+              </Box>
+              <div className="v-post-footer pb-2 px-1 "></div>
+            </AccordionDetails>
+          </Accordion>
+        </div>
       </div>
     );
   }
@@ -203,4 +204,7 @@ const mapStateToProps = ({ menuNav, core }) => ({ menuNav, core });
 const mapDispatchToProps = {
   handleMenuNav,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Post));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(useStyles)(Post));
