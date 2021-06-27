@@ -85,15 +85,18 @@ const Post = ({ handleMenuNav }) => {
                   onClick={() => alert("hello")}
                   className={classes.IconButton}
                 >
-                  <BsHeart className="mb-0 mr-2" />
+                  <BsHeart className="mr-1" />
                   <Typography variant="body2">23</Typography>
                 </IconButton>
-                <IconButton className="mx-3">
-                  <GoCommentDiscussion className={classes.IconButton} />
+                <IconButton className={classes.IconButton}>
+                  <GoCommentDiscussion className="mr-1" />
                   <Typography variant="body2">23</Typography>
                 </IconButton>
-                <IconButton className="">
-                  <IoChatboxEllipsesOutline className="mb-0 mr-2" />
+                <IconButton
+                  onClick={() => setExpanded(!expanded)}
+                  className={classes.IconButton}
+                >
+                  <IoChatboxEllipsesOutline className="mr-1" />
                 </IconButton>
               </Grid>
               <Grid item container xs={2} justify="flex-end" alignItems="center">
