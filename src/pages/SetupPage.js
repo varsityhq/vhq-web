@@ -79,10 +79,7 @@ class SetupPage extends Component {
       });
     }
 
-    if (
-      !this.props.core.accData.degree &&
-      this.props.core.accData.yearOfStudy
-    ) {
+    if (!this.props.core.accData.degree && this.props.core.accData.yearOfStudy) {
       return this.setState({
         activePanel: 1,
         errorM: true,
@@ -130,6 +127,8 @@ class SetupPage extends Component {
             changePage={(d) => this.changePage(d)}
           />
         );
+      default:
+        return;
     }
   };
 
@@ -184,8 +183,7 @@ class SetupPage extends Component {
           </div>
           <header className="text-center py-5">
             <h1 className="mb-3">
-              Hi,{" "}
-              <span className="bold">{this.props.core.accData.username} !</span>
+              Hi, <span className="bold">{this.props.core.accData.username} !</span>
             </h1>
             <p className="w-75 text-center m-auto">
               Before we continue we just need a bit of information from you

@@ -9,11 +9,12 @@ import { GoCommentDiscussion } from "react-icons/go";
 import {
   IoChatboxEllipsesOutline,
   IoEllipsisHorizontalOutline,
+  IoSend,
 } from "react-icons/io5";
 import { BsBookmarkPlus, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { handleMenuNav } from "../../store/actions/actions";
-import { Grid, IconButton, Typography } from "@material-ui/core";
+import { Avatar, Grid, IconButton, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,8 +32,19 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
   },
+  Avatar: {
+    width: theme.spacing(3),
+    height: theme.spacing(3),
+  },
   IconButton: {
     fontSize: 16,
+    padding: theme.spacing(1),
+  },
+  AccordionDetails: {
+    padding: "0 4px 0",
+  },
+  AccordionSummary: {
+    padding: 0,
   },
 }));
 
@@ -41,7 +53,7 @@ const Post = ({ handleMenuNav }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
-    <div className="v-post pt-1 mt-2 rounded ">
+    <div className="v-post pt-1 m-1 rounded ">
       <div className="d-flex p-2 align-items-center  position-relative">
         <img
           className="profilep"
@@ -70,7 +82,7 @@ const Post = ({ handleMenuNav }) => {
             }
             className="bg-transparent border-0 p-0"
           >
-            <IoEllipsisHorizontalOutline className="h3 mt-1 mb-0" />
+            <IoEllipsisHorizontalOutline className="h3" />
           </button>
         </div>
       </div>
@@ -78,7 +90,7 @@ const Post = ({ handleMenuNav }) => {
       <div className="py-2 px-2">i'm just testing by posting this</div>
       <div className={classes.root}>
         <Accordion expanded={expanded} className={classes.Accordion}>
-          <AccordionSummary>
+          <AccordionSummary className={classes.AccordionSummary}>
             <Grid container justify="center" alignItems="center">
               <Grid item xs={10} container justify="flex-start" alignItems="center">
                 <IconButton
@@ -100,21 +112,40 @@ const Post = ({ handleMenuNav }) => {
                 </IconButton>
               </Grid>
               <Grid item container xs={2} justify="flex-end" alignItems="center">
-                <BsBookmarkPlus className={classes.IconButton} />
+                <IconButton className={classes.IconButton}>
+                  <BsBookmarkPlus />
+                </IconButton>
               </Grid>
             </Grid>
           </AccordionSummary>
-          <AccordionDetails>
-            <div className="v-post-footer pb-2 px-1 ">
-              <form className="d-flex align-items-center py-1 px-2">
-                <img
-                  className="profilep2 mr-2"
-                  alt=""
+          <AccordionDetails className={classes.AccordionDetails}>
+            <Grid container alignItems="center">
+              <Grid container item xs={1} justify="flex-end" alignItems="center">
+                <Avatar
+                  className={classes.Avatar}
+                  alt="Joyleen"
                   src="https://i2-prod.dailyrecord.co.uk/incoming/article20793986.ece/ALTERNATES/s1200c/0_England-v-South-Africa-Rugby-World-Cup-2019-Final.jpg"
                 />
-                <input className="v-ycrac " placeholder="Write your response" />{" "}
-              </form>
-            </div>
+              </Grid>
+              <Grid item xs={11} justify="flex-start" alignItems="center">
+                <Typography component="form">
+                  <Grid container justify="flex-start" alignItems="center">
+                    <Grid item xs={11}>
+                      <input
+                        className="v-ycrac "
+                        placeholder="Write your response"
+                      />{" "}
+                    </Grid>
+                    <Grid container item xs={1} justify="center" alignItems="center">
+                      <IconButton type="submit">
+                        <IoSend />
+                      </IconButton>
+                    </Grid>
+                  </Grid>
+                </Typography>
+              </Grid>
+            </Grid>
+            <div className="v-post-footer pb-2 px-1 "></div>
           </AccordionDetails>
         </Accordion>
       </div>

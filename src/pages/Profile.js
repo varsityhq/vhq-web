@@ -5,7 +5,6 @@ import { BsChatFill } from "react-icons/bs";
 import { AiFillPushpin } from "react-icons/ai";
 import TabsHeader from "../components/Common/TabsHeader";
 import Post from "../components/Post/Post";
-import { BiCog } from "react-icons/bi";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -41,13 +40,11 @@ class UserProfile extends Component {
             <h3 className="bold mb-0">{this.props.accData.firstname}</h3>
             <div className="px-2">
               <div className="text-light justify-content-center d-flex align-items-center">
-                <FaUniversity className="mr-2" />{" "}
-                {this.props.accData.university}
+                <FaUniversity className="mr-2" /> {this.props.accData.university}
               </div>
               <div className="text-light text-center justify-content-center d-flex align-items-center">
-                <AiFillPushpin className="mr-2" />{" "}
-                {this.props.accData.yearOfStudy} Year,{" "}
-                {this.props.accData.degree}
+                <AiFillPushpin className="mr-2" /> {this.props.accData.yearOfStudy}{" "}
+                Year, {this.props.accData.degree}
               </div>
             </div>
             <div className="border-top mx-4 my-2"> </div>
@@ -68,9 +65,8 @@ class UserProfile extends Component {
               </Link>
             </div>
             <div className="text-center mt-2">
-              {this.props.accData.followers}{" "}
-              <span className="text-lb">Friends</span> |{" "}
-              {this.props.accData.following}{" "}
+              {this.props.accData.followers} <span className="text-lb">Friends</span>{" "}
+              | {this.props.accData.following}{" "}
               <span className="text-lb">Following</span>
             </div>
           </div>
