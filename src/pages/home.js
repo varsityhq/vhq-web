@@ -7,6 +7,8 @@ import { BsList } from "react-icons/bs";
 import { MdExplore } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import axios from "axios";
+import PostLoader from "../components/LoadingSkeletons/PostLoader";
 
 const mapStateToProps = (state) => {
   return {
@@ -15,7 +17,26 @@ const mapStateToProps = (state) => {
 };
 
 class HomePage extends Component {
-  state = {};
+  state = {
+    posts: [],
+    stories: [],
+    topics: [],
+    loading: true,
+  };
+
+  componentDidMount = () => {
+    axios
+      .get("/get/home")
+      .then((data) => {
+        console.log(data.data);
+        this.setState({
+          posts: data.data.posts,
+          loading: false,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
   render() {
     return (
       <section>
@@ -48,10 +69,19 @@ class HomePage extends Component {
             <Topics />
           </div>
           <div>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            {this.state.loading ? (
+              <>
+                <PostLoader />
+                <PostLoader />
+                <PostLoader />
+              </>
+            ) : (
+              <>
+                {this.state.posts.map((x, index) => (
+                  <Post x={x} key={index} />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </section>

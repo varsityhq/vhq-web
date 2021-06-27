@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Yosndegree } from "../../store/actions/actions";
+import RQ from "react-quill";
 
 const mapStateToProps = (state) => {
   return {
@@ -115,7 +116,9 @@ class SP6 extends Component {
             Email support if you can't find your relavent year of study
           </div>
           {this.state.error && (
-            <div className="mt-3 v-error-o-s-u">*Please complete all fields</div>
+            <div className="mt-3 v-error-o-s-u">
+              *Please complete all fields
+            </div>
           )}
         </div>
         <div className="mt-5">

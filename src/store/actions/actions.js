@@ -1,6 +1,80 @@
 import axios from "axios";
 import { setCookie } from "../../util/cookies";
 
+export const setUniColl = (n) => (dispatch) => {
+  dispatch({
+    type: "SET_OVERLAY_LOADER",
+    payload: true,
+  });
+
+  axios
+    .post(`/account/update/university`, {
+      university: n,
+    })
+    .then((data) => {
+      dispatch({
+        type: "UPDATE_UNICOLL",
+        payload: { university: n },
+      });
+
+      dispatch({
+        type: "SET_OVERLAY_LOADER",
+        payload: false,
+      });
+      console.log(data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: "SET_OVERLAY_LOADER",
+        payload: false,
+      });
+    });
+};
+export const setAudience = (n) => (dispatch) => {
+  dispatch({
+    type: "SET_OVERLAY_LOADER",
+    payload: true,
+  });
+
+  axios
+    .get(`/settings/setaudience/${n}`)
+    .then((data) => {
+      dispatch({
+        type: "SET_POST_AUDIENCE",
+        payload: n,
+      });
+
+      dispatch({
+        type: "SET_OVERLAY_LOADER",
+        payload: false,
+      });
+      console.log(data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: "SET_OVERLAY_LOADER",
+        payload: false,
+      });
+    });
+};
+export const getMyPosts = () => (dispatch) => {
+  axios
+    .get("/profile/posts")
+    .then((data) => {
+      dispatch({
+        type: "SET_MY_POSTS",
+        payload: data.data,
+      });
+
+      console.log(data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const updatetotalproducts = () => ({
   type: "UPDATE_TOTAL_PRODUCTS_AA",
 });

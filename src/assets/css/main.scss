@@ -1067,9 +1067,9 @@ button {
 .btn-v4 {
   width: fit-content;
   outline: none;
-  color: var(--primary);
+  color: var(--secondary);
   background: transparent;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--secondary);
 }
 
 .btn-v5 {
@@ -1328,6 +1328,10 @@ button {
     line-height: 20px;
   }
 
+  .public-DraftEditor-content {
+    min-height: unset;
+  }
+
   .profilep {
     height: 40px;
     width: 43px;
@@ -1370,6 +1374,26 @@ button {
   .v-post-menu-c {
     position: relative;
     top: 20px;
+  }
+
+  // classes for skeleton loader
+  .profilep-sk {
+    border-radius: 100%;
+    width: 48px;
+    height: 42px;
+    background: var(--dark);
+  }
+
+  .user-fname-sk {
+    width: 200px;
+    height: 18px;
+    background: var(--dark);
+  }
+
+  .user-fname-sk-50 {
+    width: 100px;
+    height: 18px;
+    background: var(--dark);
   }
 }
 
@@ -1460,6 +1484,14 @@ button {
 
 .bg-darkish {
   background: var(--darkish);
+}
+
+.bg-dark {
+  background: var(--dark);
+}
+
+.t-dark {
+  color: var(--dark);
 }
 
 .v-rounded {
@@ -1691,6 +1723,68 @@ button {
   // remove to show nav on pc view
   @media (min-width: 500px) {
     display: none;
+  }
+}
+
+.v-b-s-group-2 {
+  button {
+    text-align: left;
+    // font-weight: 700;
+    justify-content: left;
+    color: rgb(245, 245, 245);
+  }
+
+  .v-poll-select {
+    display: block;
+    position: relative;
+    margin-bottom: -8px;
+
+    span {
+      position: absolute;
+      top: 50%;
+      // left: 0%;
+      transform: translate(30%, -50%);
+      color: white;
+      // font-weight: 700;
+    }
+  }
+
+  .v-poll-select input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+
+  .v-poll-select label {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+  }
+
+  .v-poll-select label:before {
+    content: "default";
+    display: block;
+    width: 100%;
+    outline: none;
+    color: var(--dark);
+    background: var(--dark);
+    // border-top: 1px solid var(--secondary);
+    text-align: left;
+    padding: 20px;
+    position: relative;
+    cursor: pointer;
+    font-weight: 700;
+    border-bottom: 2px solid var(--dark);
+  }
+
+  .v-poll-select input:checked + label:before {
+    background: #1e5277;
+    color: #1e5277;
+    border-bottom: 2px solid var(--dark);
   }
 }
 
@@ -1927,6 +2021,26 @@ button {
       background: var(--darkish);
     }
   }
+
+  .v-p-m-l {
+    border-bottom: 1px solid var(--darkish);
+    .selection-div {
+      padding: 15px 15px;
+      border-top: 1px solid var(--darkish);
+      text-decoration: none;
+
+      svg {
+        font-size: 25px;
+      }
+      &:hover {
+        background: var(--darkish);
+      }
+    }
+  }
+}
+
+.cp {
+  cursor: pointer;
 }
 
 .v-crop-container {
@@ -1957,5 +2071,75 @@ button {
 
   .slider {
     padding: 22px 0px;
+  }
+}
+
+.skeleton {
+  animation: shimmer 2s;
+  animation-iteration-count: infinite;
+  background: linear-gradient(
+    to right,
+    var(--darkish) 5%,
+    #4681ac 25%,
+    var(--darkish) 35%
+  );
+  background-size: 1000px 100%;
+}
+@keyframes shimmer {
+  from {
+    background-position: -1000px 0;
+  }
+  to {
+    background-position: 1000px 0;
+  }
+}
+
+.RichEditor-editor {
+  // i set this height for the editable section for people to easily focus into the rtf
+  // height: 100%;
+}
+
+.public-DraftEditor-content {
+  min-height: 200px;
+  // height: 100%;
+  // border-bottom: 1px solid white;
+}
+
+.DraftEditor-editorContainer {
+  // min-height: 100%;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.v-post-add-image {
+  height: 80px;
+  width: 80px;
+  border: 2px dashed var(--secondary);
+  border-radius: 15px;
+  overflow: hidden;
+
+  &.selected {
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+
+    .v-remove-pi {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+      border-bottom-left-radius: 15px;
+      background: rgb(233, 69, 69);
+      font-size: 23px;
+      // padding: 3px;
+    }
+  }
+
+  svg {
+    color: var(--secondary);
   }
 }

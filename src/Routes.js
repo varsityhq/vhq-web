@@ -17,6 +17,9 @@ import Discover from "./pages/Discover";
 
 import Setup from "./pages/SetupPage";
 import ProfileSettings from "./pages/ProfileSettings";
+import SetAudience from "./pages/Settings/Audience";
+import ProfilePrefences from "./pages/Settings/ProfilePrefences";
+import SetUniversity from "./pages/Settings/SetUniversity";
 
 const mapStateToProps = (state) => {
   return {
@@ -47,7 +50,23 @@ class Router extends React.Component {
           <Route exact path="/discover" component={Discover} />
 
           <Route exact path="/profile" component={Profile} />
+          {/* Settings */}
           <Route exact path="/settings/profile" component={ProfileSettings} />
+          <Route
+            exact
+            path="/settings/profile/preferences"
+            component={ProfilePrefences}
+          />
+          <Route
+            exact
+            path="/settings/profile/preferences/university"
+            component={SetUniversity}
+          />
+          <Route
+            exact
+            path="/settings/posts/audience"
+            component={SetAudience}
+          />
 
           <Route exact path="/add" component={AddPost} />
           <Route exact path="/chat" component={ChatPage} />

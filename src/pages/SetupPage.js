@@ -79,7 +79,10 @@ class SetupPage extends Component {
       });
     }
 
-    if (!this.props.core.accData.degree && this.props.core.accData.yearOfStudy) {
+    if (
+      !this.props.core.accData.degree &&
+      this.props.core.accData.yearOfStudy
+    ) {
       return this.setState({
         activePanel: 1,
         errorM: true,
@@ -127,9 +130,10 @@ class SetupPage extends Component {
             changePage={(d) => this.changePage(d)}
           />
         );
-      default:
-        return;
-    }
+
+        default:
+          return;   
+           }
   };
 
   skip = () => {

@@ -5,12 +5,15 @@ import { FaUsersCog, FaRegQuestionCircle } from "react-icons/fa";
 import ProfilePicChange from "../components/Settings/ProfilePicChange";
 import { Link } from "react-router-dom";
 
-export default class ProfileSettings extends Component {
+class ProfileSettings extends Component {
   render() {
     return (
       <div style={{ minHeight: window.innerHeight }} className="v-settings">
         <div className="v-header-section d-flex align-items-center d-flex py-3 p-2 bold h6">
-          <Link to="/profile" className="d-flex align-items-center">
+          <Link
+            to="/profile"
+            className="d-flex a-cancel text-white align-items-center"
+          >
             <MdArrowBack className="h3 mb-0" />
             <span className="ml-3">Update profile</span>
           </Link>
@@ -19,7 +22,10 @@ export default class ProfileSettings extends Component {
           <ProfilePicChange />
         </div>
         <div className="v-p-m">
-          <div className="selection-div align-items-center d-flex justify-content-between">
+          <Link
+            to="/settings/profile/preferences"
+            className="selection-div a-cancel align-items-center d-flex justify-content-between"
+          >
             <div>
               <div className="bold">Preferences</div>
               <div>Set your basic and member preferences</div>
@@ -27,7 +33,7 @@ export default class ProfileSettings extends Component {
             <div>
               <VscSettings />
             </div>
-          </div>
+          </Link>
           <div className="selection-div align-items-center d-flex justify-content-between">
             <div>
               <div className="bold">Account</div>
@@ -53,3 +59,5 @@ export default class ProfileSettings extends Component {
     );
   }
 }
+
+export default ProfileSettings;

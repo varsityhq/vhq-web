@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { connect } from "react-redux";
 import { updateUniColl } from "../../store/actions/actions";
 import UnisAndColleges from "../../util/UnisAndColleges.json";
@@ -77,7 +77,9 @@ class SP5 extends Component {
         </h6>
         <div>
           <div className="mt-4">
-            <div className="bold">At which University/College do you study ?</div>
+            <div className="bold">
+              At which University/College do you study ?
+            </div>
             <div className="mt-3">
               <select
                 defaultValue={this.props.core.accData.university}

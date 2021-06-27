@@ -1132,9 +1132,9 @@ button {
   width: -moz-fit-content;
   width: fit-content;
   outline: none;
-  color: var(--primary);
+  color: var(--secondary);
   background: transparent;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--secondary);
 }
 
 .btn-v5 {
@@ -1168,17 +1168,8 @@ button {
 .v-postTarget .v-post-user-pp {
   height: 54px;
   width: 54px;
-  background: var(--primary);
   border-radius: 100%;
   overflow: hidden;
-}
-
-.v-postTarget .v-post-user-pp svg {
-  color: var(--primary);
-  top: 7px;
-  position: relative;
-  height: 44px;
-  width: 44px;
 }
 
 .text-blue {
@@ -1422,6 +1413,10 @@ button {
   line-height: 20px;
 }
 
+.v-post .public-DraftEditor-content {
+  min-height: unset;
+}
+
 .v-post .profilep {
   height: 40px;
   width: 43px;
@@ -1477,6 +1472,25 @@ button {
 .v-post .v-post-menu-c {
   position: relative;
   top: 20px;
+}
+
+.v-post .profilep-sk {
+  border-radius: 100%;
+  width: 48px;
+  height: 42px;
+  background: var(--dark);
+}
+
+.v-post .user-fname-sk {
+  width: 200px;
+  height: 18px;
+  background: var(--dark);
+}
+
+.v-post .user-fname-sk-50 {
+  width: 100px;
+  height: 18px;
+  background: var(--dark);
 }
 
 .a-cancel {
@@ -1571,6 +1585,14 @@ button {
 
 .bg-darkish {
   background: var(--darkish);
+}
+
+.bg-dark {
+  background: var(--dark);
+}
+
+.t-dark {
+  color: var(--dark);
 }
 
 .v-rounded {
@@ -1842,6 +1864,65 @@ button {
   }
 }
 
+.v-b-s-group-2 button {
+  text-align: left;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  color: whitesmoke;
+}
+
+.v-b-s-group-2 .v-poll-select {
+  display: block;
+  position: relative;
+  margin-bottom: -8px;
+}
+
+.v-b-s-group-2 .v-poll-select span {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(30%, -50%);
+          transform: translate(30%, -50%);
+  color: white;
+}
+
+.v-b-s-group-2 .v-poll-select input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.v-b-s-group-2 .v-poll-select label {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+.v-b-s-group-2 .v-poll-select label:before {
+  content: "default";
+  display: block;
+  width: 100%;
+  outline: none;
+  color: var(--dark);
+  background: var(--dark);
+  text-align: left;
+  padding: 20px;
+  position: relative;
+  cursor: pointer;
+  font-weight: 700;
+  border-bottom: 2px solid var(--dark);
+}
+
+.v-b-s-group-2 .v-poll-select input:checked + label:before {
+  background: #1e5277;
+  color: #1e5277;
+  border-bottom: 2px solid var(--dark);
+}
+
 .v-b-s-group button {
   text-align: center;
   font-weight: 700;
@@ -2084,6 +2165,28 @@ button {
   background: var(--darkish);
 }
 
+.v-settings .v-p-m-l {
+  border-bottom: 1px solid var(--darkish);
+}
+
+.v-settings .v-p-m-l .selection-div {
+  padding: 15px 15px;
+  border-top: 1px solid var(--darkish);
+  text-decoration: none;
+}
+
+.v-settings .v-p-m-l .selection-div svg {
+  font-size: 25px;
+}
+
+.v-settings .v-p-m-l .selection-div:hover {
+  background: var(--darkish);
+}
+
+.cp {
+  cursor: pointer;
+}
+
 .v-crop-container {
   position: absolute;
   top: 0;
@@ -2118,5 +2221,70 @@ button {
 
 .v-crop-container .slider {
   padding: 22px 0px;
+}
+
+.skeleton {
+  -webkit-animation: shimmer 2s;
+          animation: shimmer 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  background: -webkit-gradient(linear, left top, right top, color-stop(5%, var(--darkish)), color-stop(25%, #4681ac), color-stop(35%, var(--darkish)));
+  background: linear-gradient(to right, var(--darkish) 5%, #4681ac 25%, var(--darkish) 35%);
+  background-size: 1000px 100%;
+}
+
+@-webkit-keyframes shimmer {
+  from {
+    background-position: -1000px 0;
+  }
+  to {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -1000px 0;
+  }
+  to {
+    background-position: 1000px 0;
+  }
+}
+
+.public-DraftEditor-content {
+  min-height: 200px;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.v-post-add-image {
+  height: 80px;
+  width: 80px;
+  border: 2px dashed var(--secondary);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.v-post-add-image.selected img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.v-post-add-image.selected .v-remove-pi {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  border-bottom-left-radius: 15px;
+  background: #e94545;
+  font-size: 23px;
+}
+
+.v-post-add-image svg {
+  color: var(--secondary);
 }
 /*# sourceMappingURL=main.css.map */

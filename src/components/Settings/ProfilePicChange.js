@@ -8,14 +8,13 @@ import { getCroppedImg, getRotatedImage } from "./canvasUtils";
 import { styles } from "./styles";
 import imgPH from "../../assets/img/avatar.png";
 import Dialog from "@material-ui/core/Dialog";
-import Slide from "@material-ui/core/Slide";
 import { MdArrowBack } from "react-icons/md";
 import axios from "axios";
 import store from "../../store/store";
-
 import { overlayLoader } from "../../store/actions/actions";
 import { connect } from "react-redux";
 import { changePPLink } from "../../store/actions/actions";
+import { Fade } from "@material-ui/core";
 
 const mapStateToProps = (state) => {
   return {
@@ -30,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 function Transition(props) {
-  return <Slide direction="up" {...props} />;
+  return <Fade direction="up" {...props} />;
 }
 
 const ORIENTATION_TO_ANGLE = {
@@ -45,7 +44,7 @@ const ProfilePicChange = ({ classes, profilepic, changePPLink }) => {
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  // const [croppedImage, setCroppedImage] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -57,7 +56,7 @@ const ProfilePicChange = ({ classes, profilepic, changePPLink }) => {
       const croppedImage = await getCroppedImg(
         imageSrc,
         croppedAreaPixels,
-        rotation
+        rotation,
       );
 
       // let formData = new FormData();
@@ -96,8 +95,8 @@ const ProfilePicChange = ({ classes, profilepic, changePPLink }) => {
 
         var reader = new FileReader();
         reader.onload = function (e) {
-          // var returnedURL = e.target.result;
-          // var returnedBase64 = returnedURL.replace(/^[^,]+,/, "");
+          var returnedURL = e.target.result;
+          var returnedBase64 = returnedURL.replace(/^[^,]+,/, "");
           // console.log(`data:image/jpeg;base64,${returnedBase64}`);
           // console.log("already", returnedBlob);
           // const contentType = "image/jpeg";
@@ -111,26 +110,26 @@ const ProfilePicChange = ({ classes, profilepic, changePPLink }) => {
     } catch (e) {
       console.error(e);
     }
-  }, [imageSrc, croppedAreaPixels, rotation, changePPLink]);
+  }, [imageSrc, croppedAreaPixels, rotation]);
 
-  // const showCroppedImage = useCallback(async () => {
-  //   try {
-  //     const croppedImage = await getCroppedImg(
-  //       imageSrc,
-  //       croppedAreaPixels,
-  //       rotation,
-  //     );
-  //     console.log("donee", { croppedImage });
-  //     setCroppedImage(croppedImage);
-  //     return croppedImage;
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // }, [imageSrc, croppedAreaPixels, rotation]);
+  const showCroppedImage = useCallback(async () => {
+    try {
+      const croppedImage = await getCroppedImg(
+        imageSrc,
+        croppedAreaPixels,
+        rotation,
+      );
+      console.log("donee", { croppedImage });
+      setCroppedImage(croppedImage);
+      return croppedImage;
+    } catch (e) {
+      console.error(e);
+    }
+  }, [imageSrc, croppedAreaPixels, rotation]);
 
-  // const onClose = useCallback(() => {
-  //   setCroppedImage(null);
-  // }, []);
+  const onClose = useCallback(() => {
+    setCroppedImage(null);
+  }, []);
 
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -169,7 +168,10 @@ const ProfilePicChange = ({ classes, profilepic, changePPLink }) => {
               <MdArrowBack className="h3 mb-0" />
               <span className="ml-3">Edit Image</span>
             </div>
-            <div onClick={uploadImage} className="d-flex px-3 align-items-center">
+            <div
+              onClick={uploadImage}
+              className="d-flex px-3 align-items-center"
+            >
               Done
             </div>
           </div>
@@ -187,7 +189,10 @@ const ProfilePicChange = ({ classes, profilepic, changePPLink }) => {
           </div>
           <div className={classes.controls}>
             <div className={classes.sliderContainer}>
-              <Typography variant="overline" classes={{ root: classes.sliderLabel }}>
+              <Typography
+                variant="overline"
+                classes={{ root: classes.sliderLabel }}
+              >
                 Zoom
               </Typography>
               <Slider
@@ -213,7 +218,11 @@ const ProfilePicChange = ({ classes, profilepic, changePPLink }) => {
 
       <div className="d-flex py-3 justify-content-center">
         <div className="v-profile-picture">
-          <img className="img-fluid" src={profilepic ? profilepic : imgPH} alt="" />
+          <img
+            className="img-fluid"
+            src={profilepic ? profilepic : imgPH}
+            alt=""
+          />
 
           <div onClick={handlePPChange} className="v-profilep-over"></div>
         </div>
@@ -243,5 +252,5 @@ function readFile(file) {
 }
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(withStyles(styles)(ProfilePicChange));

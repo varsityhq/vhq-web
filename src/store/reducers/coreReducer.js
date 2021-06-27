@@ -6,6 +6,14 @@ const initialData = {
 
 const coreReducer = (state = initialData, actions) => {
   switch (actions.type) {
+    case "SET_POST_AUDIENCE":
+      return {
+        ...state,
+        accData: {
+          ...state.accData,
+          postAudience: actions.payload,
+        },
+      };
     case "UPDATE_PROFILE_PIC_LINK":
       return {
         ...state,
