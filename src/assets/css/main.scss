@@ -54,10 +54,6 @@ body {
 * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-
-  button {
-    outline: none !important;
-  }
 }
 
 .bg-primary {
@@ -80,6 +76,15 @@ body {
   color: var(--primary);
 }
 
+.outline-none {
+  outline: none !important;
+
+  :hover,
+  :active {
+    outline: none !important;
+  }
+}
+
 .post {
   // border-bottom: 10px solid var(--gray) !important;
 
@@ -88,7 +93,6 @@ body {
     width: 42px;
     height: 42px;
   }
-
 
   .v-ycrac {
     font-size: small;
@@ -245,7 +249,7 @@ body {
 }
 
 button {
-  outline: none;
+  outline: none !important;
 }
 
 .v-btn-2 {
@@ -1332,7 +1336,6 @@ div.MuiAccordion-root::before {
 .v-post {
   background: #10324b;
 
-
   .v-post-header {
     line-height: 20px;
   }
@@ -1433,51 +1436,91 @@ div.MuiAccordion-root::before {
   z-index: 1000;
 }
 
-.vhq-menu-nav {
-  bottom: 0;
-  height: 0;
+.vhq-menu-nav-alt {
+  bottom: -550px;
+  height: fit-content;
   overflow: hidden;
-  background: linear-gradient(to bottom, #163f5d, var(--dark));
+  position: fixed;
+  background: linear-gradient(to bottom, #f8f7f75b, var(--dark));
   left: 0;
   z-index: 1000;
   right: 0;
   border-radius: 1.6rem 1.6rem 0 0;
-  transition: height 200ms ease;
-
-  .bar {
-    position: absolute;
-    top: 0.7rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4rem;
-    height: 0.5rem;
-    border-radius: 0.5rem;
-  }
-
-  ul {
-    display: block;
-    min-height: calc(84% - 30px);
-    margin-top: 30px;
-  }
-
-  li {
-    list-style: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.159);
-  }
+  transition: bottom 200ms ease;
 
   button {
     padding: 8px 24px;
-    color: black;
     display: block;
     margin: 0 auto;
     border: none;
     width: 10rem;
     font-weight: 600;
-    background: #fff;
+    background: #445663;
+    color: var(--white);
     border-radius: 0.5rem;
+    box-shadow: none !important;
+
+    span {
+      color: var(--white);
+    }
   }
 }
 
+.vhq-menu-nav-alt_open {
+  bottom: 0;
+}
+
+.btn-group-vertical {
+  .btn {
+    border-top: 2px solid #2c3942;
+  }
+}
+
+// .vhq-menu-nav {
+  //   bottom: 0;
+  //   height: 0;
+  //   overflow: hidden;
+  //   background: linear-gradient(to bottom, #163f5d, var(--dark));
+  //   left: 0;
+  //   z-index: 1000;
+  //   right: 0;
+  //   border-radius: 1.6rem 1.6rem 0 0;
+  //   transition: height 200ms ease;
+
+  //   .bar {
+  //     position: absolute;
+  //     top: 0.7rem;
+  //     left: 50%;
+  //     transform: translateX(-50%);
+  //     width: 4rem;
+  //     height: 0.5rem;
+  //     border-radius: 0.5rem;
+  //   }
+
+  //   ul {
+  //     display: block;
+  //     min-height: calc(84% - 30px);
+  //     margin-top: 30px;
+  //   }
+
+  //   li {
+  //     list-style: none;
+  //     border-bottom: 1px solid rgba(255, 255, 255, 0.159);
+  //     cursor: pointer;
+  //   }
+
+  //   button {
+  //     padding: 8px 24px;
+  //     color: var(--white);
+  //     display: block;
+  //     margin: 0 auto;
+  //     border: none;
+  //     width: 10rem;
+  //     font-weight: 600;
+  //     background: var(--primary);
+  //     // border-radius: 0.5rem;
+  //   }
+  // }
 .vhq-menu-nav_a {
   transition: height 200ms ease;
   height: 70% !important;
@@ -2115,20 +2158,20 @@ div.MuiAccordion-root::before {
   }
 }
 
-.RichEditor-editor {
-  // i set this height for the editable section for people to easily focus into the rtf
-  // height: 100%;
-}
+// .RichEditor-editor {
+//   // i set this height for the editable section for people to easily focus into the rtf
+//   // height: 100%;
+// }
 
-.public-DraftEditor-content {
-  min-height: 200px;
-  // height: 100%;
-  // border-bottom: 1px solid white;
-}
+// .public-DraftEditor-content {
+//   min-height: 200px;
+//   // height: 100%;
+//   // border-bottom: 1px solid white;
+// }
 
-.DraftEditor-editorContainer {
-  // min-height: 100%;
-}
+// .DraftEditor-editorContainer {
+//   // min-height: 100%;
+// }
 
 .text-primary {
   color: var(--primary);

@@ -115,7 +115,9 @@ class SP6 extends Component {
             Email support if you can't find your relavent year of study
           </div>
           {this.state.error && (
-            <div className="mt-3 v-error-o-s-u">*Please complete all fields</div>
+            <div className="mt-3 v-error-o-s-u">
+              *Please complete all fields
+            </div>
           )}
         </div>
         <div className="mt-5">

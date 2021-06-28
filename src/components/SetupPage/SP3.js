@@ -81,7 +81,9 @@ class SP2 extends Component {
         </div>
         <div>
           {!this.state.gender && (
-            <div className="mt-3 v-error-o-s-u">*Select your gender to continue</div>
+            <div className="mt-3 v-error-o-s-u">
+              *Select your gender to continue
+            </div>
           )}
         </div>
         <div className="mt-5">

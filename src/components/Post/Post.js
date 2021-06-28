@@ -83,7 +83,7 @@ class Post extends Component {
     const { x, core, handleDrawer, classes } = this.props;
 
     return (
-      <div className="v-post pt-1 mt-2 rounded ">
+      <div className="v-post pt-1 mx-1 mt-2 rounded ">
         <Box className="px-2">
           <Box display="flex" justify="center" alignItems="center">
             <Avatar className="" alt={core.accData.firstname} src={x.profilepic} />
@@ -106,6 +106,8 @@ class Post extends Component {
                 </Link>
               </Box>
               <IconButton
+                disableTouchRipple
+                disableFocusRipple
                 onClick={(event) =>
                   handleDrawer({
                     event: { key: event.key, type: event.type },
@@ -134,6 +136,8 @@ class Post extends Component {
             <Grid container justify="center" alignItems="center">
               <Grid item xs={10} container justify="flex-start" alignItems="center">
                 <IconButton
+                  disableTouchRipple
+                  disableFocusRipple
                   onClick={() => alert("hello")}
                   className={classes.IconButton}
                 >
@@ -141,6 +145,8 @@ class Post extends Component {
                   <Typography variant="body2">{x.likes_count}</Typography>
                 </IconButton>
                 <IconButton
+                  disableTouchRipple
+                  disableFocusRipple
                   className={classes.IconButton}
                   onClick={(event) =>
                     handleDrawer({
@@ -154,6 +160,8 @@ class Post extends Component {
                   <Typography variant="body2">{x.comments_count}</Typography>
                 </IconButton>
                 <IconButton
+                  disableTouchRipple
+                  disableFocusRipple
                   onClick={() => this.setExpanded(!this.state.expanded)}
                   className={classes.IconButton}
                 >
@@ -168,7 +176,11 @@ class Post extends Component {
                 justify="flex-end"
                 alignItems="center"
               >
-                <IconButton className={classes.IconButton}>
+                <IconButton
+                  disableTouchRipple
+                  disableFocusRipple
+                  className={classes.IconButton}
+                >
                   <BsBookmarkPlus fontSize={24} />
                 </IconButton>
               </Grid>

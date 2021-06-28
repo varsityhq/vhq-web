@@ -85,6 +85,11 @@ const coreReducer = (state = initialData, actions) => {
         ...state,
         authenticated: actions.payload,
       };
+    case "SET_UNAUTHENTICATED":
+      return {
+        ...state,
+        authenticated: false,
+      };
     case "FOOTER_ENABLED":
       return {
         ...state,

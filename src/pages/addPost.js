@@ -123,8 +123,8 @@ class AddPost extends Component {
 
   handlePostText = (txt) => {
     let receivedTxt = txt;
-    let postHashTags = receivedTxt.match(/#[^\s#.;]*/gim);
-    let tagged_users = receivedTxt.match(/@[^\s@.;]*/gim);
+    let postHashTags = receivedTxt.match(/#[^\s#]*/gim);
+    let tagged_users = receivedTxt.match(/@[^\s@]*/gim);
     this.setState({ postText: txt, postHashTags, tagged_users });
   };
 

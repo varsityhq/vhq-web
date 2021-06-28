@@ -57,9 +57,7 @@ class AppContainer extends Component {
       store.dispatch(getAccount());
     }
   };
-  componentDidUpdate() {
-    console.log(this.props.drawerData);
-  }
+
   render() {
     const { menuNav, drawerData, handleNavDrawer, core } = this.props;
     if (core.authenticated && !core.accData) {

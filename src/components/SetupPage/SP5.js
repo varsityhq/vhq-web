@@ -77,7 +77,9 @@ class SP5 extends Component {
         </h6>
         <div>
           <div className="mt-4">
-            <div className="bold">At which University/College do you study ?</div>
+            <div className="bold">
+              At which University/College do you study ?
+            </div>
             <div className="mt-3">
               <select
                 defaultValue={this.props.core.accData.university}

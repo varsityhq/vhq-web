@@ -38,10 +38,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-* button {
-  outline: none !important;
-}
-
 .bg-primary {
   background: var(--primary) !important;
 }
@@ -60,6 +56,15 @@ body {
 
 .text-cm {
   color: var(--primary);
+}
+
+.outline-none {
+  outline: none !important;
+}
+
+.outline-none :hover,
+.outline-none :active {
+  outline: none !important;
 }
 
 .post .profilep {
@@ -229,7 +234,7 @@ body {
 }
 
 button {
-  outline: none;
+  outline: none !important;
 }
 
 .v-btn-2 {
@@ -1538,52 +1543,47 @@ div.MuiAccordion-root::before {
   z-index: 1000;
 }
 
-.vhq-menu-nav {
-  bottom: 0;
-  height: 0;
+.vhq-menu-nav-alt {
+  bottom: -550px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   overflow: hidden;
-  background: -webkit-gradient(linear, left top, left bottom, from(#163f5d), to(var(--dark)));
-  background: linear-gradient(to bottom, #163f5d, var(--dark));
+  position: fixed;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8f7f75b), to(var(--dark)));
+  background: linear-gradient(to bottom, #f8f7f75b, var(--dark));
   left: 0;
   z-index: 1000;
   right: 0;
   border-radius: 1.6rem 1.6rem 0 0;
-  -webkit-transition: height 200ms ease;
-  transition: height 200ms ease;
+  -webkit-transition: bottom 200ms ease;
+  transition: bottom 200ms ease;
 }
 
-.vhq-menu-nav .bar {
-  position: absolute;
-  top: 0.7rem;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  width: 4rem;
-  height: 0.5rem;
-  border-radius: 0.5rem;
-}
-
-.vhq-menu-nav ul {
-  display: block;
-  min-height: calc(84% - 30px);
-  margin-top: 30px;
-}
-
-.vhq-menu-nav li {
-  list-style: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.159);
-}
-
-.vhq-menu-nav button {
+.vhq-menu-nav-alt button {
   padding: 8px 24px;
-  color: black;
   display: block;
   margin: 0 auto;
   border: none;
   width: 10rem;
   font-weight: 600;
-  background: #fff;
+  background: #445663;
+  color: var(--white);
   border-radius: 0.5rem;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.vhq-menu-nav-alt button span {
+  color: var(--white);
+}
+
+.vhq-menu-nav-alt_open {
+  bottom: 0;
+}
+
+.btn-group-vertical .btn {
+  border-top: 2px solid #2c3942;
 }
 
 .vhq-menu-nav_a {
@@ -2267,10 +2267,6 @@ div.MuiAccordion-root::before {
   to {
     background-position: 1000px 0;
   }
-}
-
-.public-DraftEditor-content {
-  min-height: 200px;
 }
 
 .text-primary {
