@@ -7,15 +7,19 @@ import { BsList } from "react-icons/bs";
 import { MdExplore } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { handleNavDrawer } from "../store/actions/actions";
 import axios from "axios";
 import PostLoader from "../components/LoadingSkeletons/PostLoader";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ core, drawerData }) => ({
+  core,
+  drawerData,
+});
+const mapDispatchToProps = (dispatch) => {
   return {
-    university: state.core.accData.university,
+    handleNavDrawer: (n) => dispatch(handleNavDrawer(n)),
   };
 };
-
 class HomePage extends Component {
   state = {
     posts: [],
@@ -28,7 +32,6 @@ class HomePage extends Component {
     axios
       .get("/get/home")
       .then((data) => {
-        console.log(data.data);
         this.setState({
           posts: data.data.posts,
           loading: false,
@@ -38,12 +41,13 @@ class HomePage extends Component {
   };
 
   render() {
+    const { core, handleNavDrawer } = this.props;
     return (
       <section>
         <div className="v-header-section pt-4 pb-4">
           <div className="text-center">
             <h1 className="bold v-vhq-name mb-0">VarsityHQ</h1>
-            <div className="text-lb">{this.props.university}</div>
+            <div className="text-lb">{core.accData.university}</div>
           </div>
           <div className="px-2 mb-1 mt-3 d-flex justify-content-center">
             <Link
@@ -78,7 +82,13 @@ class HomePage extends Component {
             ) : (
               <>
                 {this.state.posts.map((x, index) => (
-                  <Post x={x} key={index} />
+                  <Post
+                    x={x}
+                    key={index}
+                    handleDrawer={handleNavDrawer}
+                    core={core}
+                    id={`postIdFromBackEnd_${index}`}
+                  />
                 ))}
               </>
             )}
@@ -89,4 +99,4 @@ class HomePage extends Component {
   }
 }
 
-export default connect(mapStateToProps, null)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

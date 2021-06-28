@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BiWorld } from "react-icons/bi";
-import { FaUserLock, FaGraduationCap, FaUser } from "react-icons/fa";
+import { FaUserLock, FaGraduationCap } from "react-icons/fa";
 import { BsFillLockFill } from "react-icons/bs";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -22,9 +22,7 @@ class PostTarget extends Component {
             <div className="v-post-user-pp">
               <img
                 src={
-                  this.props.core.profilepic
-                    ? this.props.core.profilepic
-                    : Avatar
+                  this.props.core.profilepic ? this.props.core.profilepic : Avatar
                 }
                 className="img-fluid"
                 alt=""

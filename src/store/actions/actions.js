@@ -21,7 +21,6 @@ export const setUniColl = (n) => (dispatch) => {
         type: "SET_OVERLAY_LOADER",
         payload: false,
       });
-      console.log(data.data);
     })
     .catch((err) => {
       console.log(err);
@@ -49,10 +48,8 @@ export const setAudience = (n) => (dispatch) => {
         type: "SET_OVERLAY_LOADER",
         payload: false,
       });
-      console.log(data.data);
     })
     .catch((err) => {
-      console.log(err);
       dispatch({
         type: "SET_OVERLAY_LOADER",
         payload: false,
@@ -67,8 +64,6 @@ export const getMyPosts = () => (dispatch) => {
         type: "SET_MY_POSTS",
         payload: data.data,
       });
-
-      console.log(data.data);
     })
     .catch((err) => {
       console.log(err);
@@ -81,6 +76,10 @@ export const updatetotalproducts = () => ({
 
 export const handleMenuNav = (payload) => ({
   type: "SHOW_MENU_NAV",
+  payload,
+});
+export const handleNavDrawer = (payload) => ({
+  type: "SHOW_NAV_DRAWER",
   payload,
 });
 export const overlayLoader = (payload) => ({
@@ -145,7 +144,6 @@ export const getAccount = () => (dispatch) => {
   axios
     .get("/get/account")
     .then((data) => {
-      console.log(data.data);
       dispatch({
         type: "SET_ACC_DATA",
         payload: data.data,
@@ -166,7 +164,6 @@ export const setAuthState = (state) => (dispatch) => {
 export const userCreated = (data) => (dispatch) => {
   setAuthorizationHeader(data);
   window.location.href = "/";
-  console.log(data);
 };
 
 export const logOutUser = () => (dispatch) => {

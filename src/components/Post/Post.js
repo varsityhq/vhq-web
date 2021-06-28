@@ -12,10 +12,8 @@ import {
 } from "react-icons/io5";
 import { BsBookmarkPlus, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { handleMenuNav } from "../../store/actions/actions";
 import { Editor, convertFromRaw, EditorState } from "draft-js";
 import { Avatar, Box, Grid, IconButton, Typography } from "@material-ui/core";
-import { connect } from "react-redux";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
@@ -23,9 +21,6 @@ dayjs.extend(relativeTime);
 const useStyles = (theme) => ({
   root: {
     width: "100%",
-  },
-  Accordion: {
-    backgroundColor: "transparent",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -37,15 +32,23 @@ const useStyles = (theme) => ({
     color: theme.palette.text.secondary,
   },
   Avatar: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    margin: 0,
   },
   IconButton: {
-    fontSize: 16,
+    fontSize: 20,
     padding: theme.spacing(1),
   },
+  Accordion: {
+    backgroundColor: "transparent",
+    paddingLeft: theme.spacing(1),
+  },
   AccordionDetails: {
-    padding: "0 4px 0",
+    // padding: "0 4px 16px 20px",
+    paddingLeft: theme.spacing(1),
+    border: 0,
+    boxShadow: "none",
   },
   AccordionSummary: {
     padding: 0,
@@ -57,6 +60,8 @@ class Post extends Component {
     expanded: false,
     showSend: false,
     postTextContent: EditorState.createEmpty(),
+    open: false,
+    showDrawer: false,
   };
 
   componentDidMount = () => {
@@ -73,47 +78,48 @@ class Post extends Component {
   };
 
   handleFocus = () => this.setState({ showSend: true });
-  // componentDidUpdate() {
-  //   console.log(this.props.menuNav);
-  // }
+
   render() {
-    const { classes } = this.props;
-    const { handleMenuNav } = this.props;
+    const { x, core, handleDrawer, classes } = this.props;
 
     return (
       <div className="v-post pt-1 mt-2 rounded ">
-        <div className="d-flex p-2 align-items-center  position-relative">
-          <img className="profilep" alt="" src={this.props.x.profilepic} />
-          <div className="d-flex px-2 align-content-center h-100 justify-content-between w-100">
-            <Link
-              className="a-cancel"
-              to="/c.brendon"
-              // className="pl-3 v-post-header mt- d-flex align-items-center"
-            >
-              <div className=" mb-0">
-                <span className="bold">
-                  {this.props.x.firstname}&nbsp;{this.props.x.surname.charAt(0)}
-                </span>{" "}
-                <span className="d-flex align-items-center text-lb">
-                  @{this.props.x.username} -
-                  <GiThreeFriends className="text-lb ml-1" />{" "}
-                </span>
-              </div>
-            </Link>
-            <button
-              onClick={() =>
-                handleMenuNav({
-                  show: true,
-                  name: "brendon-post",
-                })
-              }
-              className="bg-transparent border-0 p-0"
-            >
-              <IoEllipsisHorizontalOutline className="h3 mt-1 mb-0" />
-            </button>
-          </div>
-        </div>
-        {/* <PostImgs /> */}
+        <Box className="px-2">
+          <Box display="flex" justify="center" alignItems="center">
+            <Avatar className="" alt={core.accData.firstname} src={x.profilepic} />
+            <Box className="d-flex px-2 align-content-center h-100 justify-content-between w-100">
+              <Box>
+                {/* //? Link to Profile Page */}
+                <Link className="a-cancel" to="/c.brendon">
+                  <span className="bold">
+                    {x.firstname}&nbsp;{x.surname.charAt(0)}
+                  </span>{" "}
+                  <small className="px-2 text-lb">
+                    {dayjs(x.created_at).fromNow()}
+                  </small>
+                </Link>
+                <Link className="a-cancel d-block" to="/c.brendon">
+                  <span className="d-flex align-items-center text-lb">
+                    @{x.username} -
+                    <GiThreeFriends className="text-lb ml-1" />{" "}
+                  </span>
+                </Link>
+              </Box>
+              <IconButton
+                onClick={(event) =>
+                  handleDrawer({
+                    event: { key: event.key, type: event.type },
+                    anchor: "main_botom_drawer",
+                    open: true,
+                  })
+                }
+                className="bg-transparent border-0 p-0"
+              >
+                <IoEllipsisHorizontalOutline className="h3 mt-1 mb-0" />
+              </IconButton>
+            </Box>
+          </Box>
+        </Box>
         <div className="py-2 px-2">
           <Editor
             editorState={this.state.postTextContent}
@@ -122,89 +128,87 @@ class Post extends Component {
             spellCheck={false}
           />
         </div>
-        <div style={{ fontSize: "13px" }} className="px-2 text-lb">
-          {dayjs(this.props.x.created_at).fromNow()}
-        </div>
-        <div className={classes.root}>
-          <Accordion expanded={this.state.expanded} className={classes.Accordion}>
-            <AccordionSummary className={classes.AccordionSummary}>
-              <Grid container justify="center" alignItems="center">
-                <Grid
-                  item
-                  xs={10}
-                  container
-                  justify="flex-start"
+
+        <Accordion expanded={this.state.expanded} className={classes.Accordion}>
+          <AccordionSummary className={classes.AccordionSummary}>
+            <Grid container justify="center" alignItems="center">
+              <Grid item xs={10} container justify="flex-start" alignItems="center">
+                <IconButton
+                  onClick={() => alert("hello")}
+                  className={classes.IconButton}
+                >
+                  <BsHeart className="mr-1" />
+                  <Typography variant="body2">{x.likes_count}</Typography>
+                </IconButton>
+                <IconButton
+                  className={classes.IconButton}
+                  onClick={(event) =>
+                    handleDrawer({
+                      event: { key: event.key, type: event.type },
+                      anchor: "post",
+                      open: true,
+                    })
+                  }
+                >
+                  <GoCommentDiscussion className="mr-1" />
+                  <Typography variant="body2">{x.comments_count}</Typography>
+                </IconButton>
+                <IconButton
+                  onClick={() => this.setExpanded(!this.state.expanded)}
+                  className={classes.IconButton}
+                >
+                  <IoChatboxEllipsesOutline />
+                </IconButton>
+              </Grid>
+              <Grid
+                item
+                container
+                xs={2}
+                className="pr-2"
+                justify="flex-end"
+                alignItems="center"
+              >
+                <IconButton className={classes.IconButton}>
+                  <BsBookmarkPlus fontSize={24} />
+                </IconButton>
+              </Grid>
+            </Grid>
+          </AccordionSummary>
+          <AccordionDetails className={classes.AccordionDetails}>
+            <Box display="flex" width="100%" alignItems="center">
+              <Box minWidth={30} display="flex" className="" alignItems="center">
+                <Avatar
+                  className={classes.Avatar}
+                  alt={core.accData.firstname}
+                  src={core.accData.profilepic}
+                />
+              </Box>
+              <Box
+                component="form"
+                width="100%"
+                display="flex"
+                justify="flex-start"
+                alignItems="center"
+              >
+                <Box width="100%">
+                  <input className="v-ycrac " placeholder="Write your response" />
+                </Box>
+                <Box
+                  minWidth={30}
+                  display="flex"
+                  justify="center"
                   alignItems="center"
                 >
-                  <IconButton
-                    onClick={() => alert("hello")}
-                    className={classes.IconButton}
-                  >
-                    <BsHeart className="mr-1" />
-                    <Typography variant="body2">
-                      {this.props.x.likes_count}
-                    </Typography>
+                  <IconButton type="submit">
+                    <IoSend />
                   </IconButton>
-                  <IconButton className={classes.IconButton}>
-                    <GoCommentDiscussion className="mr-1" />
-                    <Typography variant="body2">
-                      {this.props.x.comments_count}
-                    </Typography>
-                  </IconButton>
-                  <IconButton
-                    onClick={() => this.setExpanded(!this.state.expanded)}
-                    className={classes.IconButton}
-                  >
-                    <IoChatboxEllipsesOutline className="mr-1" />
-                  </IconButton>
-                </Grid>
-                <Grid item container xs={2} justify="flex-end" alignItems="center">
-                  <IconButton className={classes.IconButton}>
-                    <BsBookmarkPlus />
-                  </IconButton>
-                </Grid>
-              </Grid>
-            </AccordionSummary>
-            <AccordionDetails className={classes.AccordionDetails}>
-              <Box display="flex" alignItems="center">
-                <Box minWidth={35} justify="flex-end" alignItems="center">
-                  <Avatar
-                    className={classes.Avatar}
-                    alt={this.props.core.accData.firstname}
-                    src={this.props.core.accData.profilepic}
-                  />
-                </Box>
-                <Box width="100%" justify="flex-start" alignItems="center">
-                  <Typography component="form">
-                    <Box display="dlex" justify="flex-start" alignItems="center">
-                      <Box width="100%">
-                        <input
-                          className="v-ycrac "
-                          placeholder="Write your response"
-                        />{" "}
-                      </Box>
-                      <Box minWidth={35}>
-                        <IconButton type="submit">
-                          <IoSend />
-                        </IconButton>
-                      </Box>
-                    </Box>
-                  </Typography>
                 </Box>
               </Box>
-              <div className="v-post-footer pb-2 px-1 "></div>
-            </AccordionDetails>
-          </Accordion>
-        </div>
+            </Box>
+          </AccordionDetails>
+        </Accordion>
       </div>
     );
   }
 }
-const mapStateToProps = ({ menuNav, core }) => ({ menuNav, core });
-const mapDispatchToProps = {
-  handleMenuNav,
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(useStyles)(Post));
+export default withStyles(useStyles)(Post);

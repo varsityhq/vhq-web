@@ -6,8 +6,6 @@ import { footerEnabled } from "../store/actions/actions";
 import { Link } from "react-router-dom";
 import { IoPushOutline } from "react-icons/io5";
 import Fade from "react-reveal/Fade";
-import { FaUserTag } from "react-icons/fa";
-import { BiImageAdd } from "react-icons/bi";
 import { ImStatsBars } from "react-icons/im";
 import { MdArrowBack } from "react-icons/md";
 import AddPicture from "../components/CreatePost/AddPicture";
@@ -99,7 +97,7 @@ class AddPost extends Component {
     if (this.state.local_attachments.length > 0) {
       localStorage.setItem(
         "local_attachments",
-        JSON.stringify(this.state.local_attachments),
+        JSON.stringify(this.state.local_attachments)
       );
     }
   };
@@ -125,8 +123,8 @@ class AddPost extends Component {
 
   handlePostText = (txt) => {
     let receivedTxt = txt;
-    let postHashTags = receivedTxt.match(/#[^\s#\.\;]*/gim);
-    let tagged_users = receivedTxt.match(/@[^\s@\.\;]*/gim);
+    let postHashTags = receivedTxt.match(/#[^\s#.;]*/gim);
+    let tagged_users = receivedTxt.match(/@[^\s@.;]*/gim);
     this.setState({ postText: txt, postHashTags, tagged_users });
   };
 

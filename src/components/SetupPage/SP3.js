@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { AiFillFlag } from "react-icons/ai";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { GiFinishLine } from "react-icons/gi";
+import { FaArrowLeft } from "react-icons/fa";
 import { connect } from "react-redux";
 import { updateGender } from "../../store/actions/actions";
 import ButtonSelectGroup from "../Common/ButtonSelectGroup";
@@ -82,9 +81,7 @@ class SP2 extends Component {
         </div>
         <div>
           {!this.state.gender && (
-            <div className="mt-3 v-error-o-s-u">
-              *Select your gender to continue
-            </div>
+            <div className="mt-3 v-error-o-s-u">*Select your gender to continue</div>
           )}
         </div>
         <div className="mt-5">

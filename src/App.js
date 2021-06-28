@@ -2,26 +2,24 @@ import React, { Component } from "react";
 import { Container, Wrapper } from "./components/Layout/styles";
 import SuggestPhone from "./pages/SuggestPhone";
 import BottomMenuComponent from "./components/BottomMenuComponent/BottomMenuComponent";
-import {
-  Container as InnerContainer,
-  BottomMenu,
-} from "./components/Main/styles";
+import { Container as InnerContainer, BottomMenu } from "./components/Main/styles";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "./Routes";
 import MenuBar from "./components/MenuBar";
 import SideBar from "./components/SideBar";
 import { connect } from "react-redux";
-import MenuNav from "./components/Common/MenuNav";
 import OverlayLoader from "./components/Common/OverlayLoader";
 import {
   handleMenuNav,
   setAuthState,
   getAccount,
+  handleNavDrawer,
 } from "./store/actions/actions";
 import axios from "axios";
 import store from "./store/store";
 import { checkCookie, getCookie } from "./util/cookies";
 import LoadingAppPage from "./pages/LoadingAppPage";
+import NavDrawer from "./components/navigation/NavDrawer";
 
 axios.defaults.baseURL =
   "https://us-central1-varsityhq-bd225.cloudfunctions.net/apis";
@@ -29,14 +27,16 @@ axios.defaults.baseURL =
 // axios.defaults.baseURL =
 //   "http://localhost:5000/varsityhq-bd225/us-central1/apis";
 
-const mapStateToProps = ({ core, menuNav }) => ({
+const mapStateToProps = ({ core, menuNav, drawerData }) => ({
   core,
-  menuNav: menuNav,
+  menuNav,
+  drawerData,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     handleMenuNav: (n) => dispatch(handleMenuNav(n)),
+    handleNavDrawer: (n) => dispatch(handleNavDrawer(n)),
     setAuthState: (s) => dispatch(setAuthState(s)),
   };
 };
@@ -57,19 +57,20 @@ class AppContainer extends Component {
       store.dispatch(getAccount());
     }
   };
-
+  componentDidUpdate() {
+    console.log(this.props.drawerData);
+  }
   render() {
-    const { menuNav, handleMenuNav } = this.props;
-
-    if (this.props.core.authenticated && !this.props.core.accData) {
+    const { menuNav, drawerData, handleNavDrawer, core } = this.props;
+    if (core.authenticated && !core.accData) {
       return <LoadingAppPage />;
     }
 
-    if (this.props.core.authenticated) {
-      if (this.props.core.accData.accountStatus === "pending-setup") {
+    if (core.authenticated) {
+      if (core.accData.accountStatus === "pending-setup") {
         return (
           <>
-            {this.props.menuNav.overlayLoader && <OverlayLoader />}
+            {menuNav.overlayLoader && <OverlayLoader />}
             <Routes />
           </>
         );
@@ -79,12 +80,12 @@ class AppContainer extends Component {
         <>
           <Router>
             <Container>
-              {this.props.menuNav.overlayLoader && <OverlayLoader />}
+              {menuNav.overlayLoader && <OverlayLoader />}
               <Wrapper>
                 <MenuBar />
                 <InnerContainer>
                   <Routes />
-                  {this.props.core.showFooterMenu && (
+                  {core.showFooterMenu && (
                     <BottomMenu>
                       <BottomMenuComponent />
                     </BottomMenu>
@@ -92,7 +93,7 @@ class AppContainer extends Component {
                 </InnerContainer>
                 <SideBar />
               </Wrapper>
-              <MenuNav {...{ menuNav, handleMenuNav }} />
+              <NavDrawer handleDrawer={handleNavDrawer} drawerData={drawerData} />
             </Container>
           </Router>
         </>

@@ -54,11 +54,16 @@ body {
 * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  button {
+    outline: none !important;
+  }
 }
 
 .bg-primary {
   background: var(--primary) !important;
 }
+
 .btn1 {
   background: var(--gray);
   border: none;
@@ -84,12 +89,13 @@ body {
     height: 42px;
   }
 
+
   .v-ycrac {
     font-size: small;
     font-style: italic;
     width: 100%;
     color: #e8e8e8;
-    padding: 8px 6px;
+    padding: 0.375rem 0.75rem;
     background: transparent;
     outline: none;
     border: none;
@@ -200,7 +206,8 @@ body {
 
   z-index: 2;
   box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
-    0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+  0px 3px 4px 0px rgba(0, 0, 0, 0.14),
+  0px 1px 8px 0px rgba(0, 0, 0, 0.12);
 
   .page-name {
     font-size: 23px;
@@ -306,6 +313,7 @@ button {
     }
 
     @keyframes square {
+
       0%,
       100% {
         transform: translateY(-40px);
@@ -408,11 +416,9 @@ button {
       }
 
       input[type="submit"]:hover {
-        background: linear-gradient(
-          115deg,
-          rgba(0, 0, 0, 0.1),
-          rgba(255, 255, 255, 0.25)
-        );
+        background: linear-gradient(115deg,
+            rgba(0, 0, 0, 0.1),
+            rgba(255, 255, 255, 0.25));
         color: #fff;
         transition: 0.5s;
       }
@@ -432,8 +438,8 @@ button {
         pointer-events: none;
       }
 
-      input:focus ~ span,
-      input:valid ~ span {
+      input:focus~span,
+      input:valid~span {
         transform: translateX(-30px) translateY(-30px);
         font-size: 12px;
       }
@@ -583,14 +589,10 @@ button {
     background-color: transparent;
     border: 10px solid var(--circleColor);
     border-radius: 50%;
-    box-shadow: inset var(--shadowShift) var(--shadowShift) var(--shadowBlur)
-        rgba(28, 46, 102, 0.2),
-      var(--shadowShift) var(--shadowShift) var(--shadowBlur)
-        rgba(23, 37, 82, 0.2),
-      inset calc(var(--shadowShift) * -1) calc(var(--shadowShift) * -1)
-        var(--shadowBlur) #24435a,
-      calc(var(--shadowShift) * -1) calc(var(--shadowShift) * -1)
-        var(--shadowBlur) #2a485e;
+    box-shadow: inset var(--shadowShift) var(--shadowShift) var(--shadowBlur) rgba(28, 46, 102, 0.2),
+      var(--shadowShift) var(--shadowShift) var(--shadowBlur) rgba(23, 37, 82, 0.2),
+      inset calc(var(--shadowShift) * -1) calc(var(--shadowShift) * -1) var(--shadowBlur) #24435a,
+      calc(var(--shadowShift) * -1) calc(var(--shadowShift) * -1) var(--shadowBlur) #2a485e;
     filter: blur(3px);
 
     animation-name: scaleUp;
@@ -675,12 +677,10 @@ button {
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      to top,
-      black,
-      rgba(0, 0, 0, 0.671),
-      rgba(255, 255, 255, 0)
-    );
+    background: linear-gradient(to top,
+        black,
+        rgba(0, 0, 0, 0.671),
+        rgba(255, 255, 255, 0));
   }
 }
 
@@ -1084,6 +1084,7 @@ button {
 
 .v-bb {
   border-bottom: 5px solid var(--darkish);
+
   .v2 {
     border-bottom: 5px solid var(--dark);
   }
@@ -1243,6 +1244,7 @@ button {
       border-radius: 0;
       color: var(--white);
     }
+
     ::placeholder {
       color: var(--secondary);
       opacity: 1;
@@ -1317,12 +1319,19 @@ button {
 .text-lb {
   color: var(--secondary);
 }
+
 .text-lg {
   color: rgba(122, 162, 172, 0.986);
 }
 
+div.MuiAccordion-root::before {
+  background-color: transparent !important;
+  opacity: 0 !important;
+}
+
 .v-post {
   background: #10324b;
+
 
   .v-post-header {
     line-height: 20px;
@@ -1478,6 +1487,7 @@ button {
   background: var(--darkish);
   border-radius: 15px;
 }
+
 .v-border-top {
   border-top: 3px solid var(--dark);
 }
@@ -1502,6 +1512,7 @@ button {
   img {
     width: 100%;
   }
+
   margin-bottom: 3px;
 }
 
@@ -1536,6 +1547,7 @@ button {
     left: 105px;
   }
 }
+
 .text-dark {
   svg {
     color: #343a40 !important;
@@ -1633,21 +1645,21 @@ button {
   .bg-darkish {
     border: 2px solid var(--dark);
   }
+
   .v-d-u-grad {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.13),
-      rgb(12, 12, 12)
-    );
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.13),
+        rgb(12, 12, 12));
     z-index: 1;
     top: 0;
     bottom: 0;
     left: 0;
     top: 0;
   }
+
   .v-d-u-footer {
     z-index: 2;
     position: absolute;
@@ -1680,6 +1692,7 @@ button {
   width: 100%;
   padding: 5px 10px;
 }
+
 .v-error-o-s-u {
   background: rgba(196, 59, 59, 0.541);
   display: block;
@@ -1693,6 +1706,7 @@ button {
   border: none;
   border-bottom: 2px solid var(--secondary);
   color: white;
+
   &::placeholder {
     color: rgba(220, 220, 220, 0.493);
     // font-style: italic;
@@ -1781,7 +1795,7 @@ button {
     border-bottom: 2px solid var(--dark);
   }
 
-  .v-poll-select input:checked + label:before {
+  .v-poll-select input:checked+label:before {
     background: #1e5277;
     color: #1e5277;
     border-bottom: 2px solid var(--dark);
@@ -1844,7 +1858,7 @@ button {
     font-weight: 700;
   }
 
-  .v-poll-select input:checked + label:before {
+  .v-poll-select input:checked+label:before {
     background: #2d9dd4;
     color: #2d9dd4;
     border: 2px solid var(--white);
@@ -1858,7 +1872,7 @@ button {
     display: none;
   }
 
-  input[type="checkbox"] + label {
+  input[type="checkbox"]+label {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -1868,11 +1882,11 @@ button {
     cursor: pointer;
   }
 
-  input[type="checkbox"] + label:last-child {
+  input[type="checkbox"]+label:last-child {
     margin-bottom: 0;
   }
 
-  input[type="checkbox"] + label:before {
+  input[type="checkbox"]+label:before {
     content: "";
     display: block;
     width: 20px;
@@ -1886,7 +1900,7 @@ button {
     transition: all 0.12s, border-color 0.08s;
   }
 
-  input[type="checkbox"]:checked + label:before {
+  input[type="checkbox"]:checked+label:before {
     width: 10px;
     top: -5px;
     left: 5px;
@@ -1961,6 +1975,7 @@ button {
       -webkit-transform: rotate(0deg);
       transform: rotate(0deg);
     }
+
     to {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
@@ -1972,6 +1987,7 @@ button {
       -webkit-transform: rotate(0deg);
       transform: rotate(0deg);
     }
+
     to {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
@@ -2000,6 +2016,7 @@ button {
       z-index: 2;
       top: 0;
       animation-duration: 1s;
+
       &:hover {
         animation-duration: 1s;
         background: rgba(12, 12, 12, 0.308);
@@ -2009,6 +2026,7 @@ button {
 
   .v-p-m {
     border-bottom: 1px solid var(--darkish);
+
     .selection-div {
       padding: 15px 15px;
       border-top: 1px solid var(--darkish);
@@ -2017,6 +2035,7 @@ button {
         font-size: 25px;
       }
     }
+
     :hover {
       background: var(--darkish);
     }
@@ -2024,6 +2043,7 @@ button {
 
   .v-p-m-l {
     border-bottom: 1px solid var(--darkish);
+
     .selection-div {
       padding: 15px 15px;
       border-top: 1px solid var(--darkish);
@@ -2032,6 +2052,7 @@ button {
       svg {
         font-size: 25px;
       }
+
       &:hover {
         background: var(--darkish);
       }
@@ -2077,18 +2098,18 @@ button {
 .skeleton {
   animation: shimmer 2s;
   animation-iteration-count: infinite;
-  background: linear-gradient(
-    to right,
-    var(--darkish) 5%,
-    #4681ac 25%,
-    var(--darkish) 35%
-  );
+  background: linear-gradient(to right,
+      var(--darkish) 5%,
+      #4681ac 25%,
+      var(--darkish) 35%);
   background-size: 1000px 100%;
 }
+
 @keyframes shimmer {
   from {
     background-position: -1000px 0;
   }
+
   to {
     background-position: 1000px 0;
   }
